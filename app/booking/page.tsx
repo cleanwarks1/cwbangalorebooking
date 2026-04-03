@@ -212,7 +212,9 @@ export default function BookingPage() {
   );
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm((prev) => ({ ...prev, date: e.target.value, time: "" }));
+    const selected = e.target.value;
+    if (selected < BOOKING_OPENS) return; // block dates before launch
+    setForm((prev) => ({ ...prev, date: selected, time: "" }));
     setError("");
   };
 
