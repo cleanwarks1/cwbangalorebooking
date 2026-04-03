@@ -250,7 +250,7 @@ export default function LandingPage() {
           >
             Why Choose Clean Warks?
           </h2>
-          <p className="text-slate-400 text-center mb-10 text-lg">We&apos;re not just another cleaning service.</p>
+          <p className="text-slate-400 text-center mb-10 text-lg">We're not just another cleaning service.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
               {
@@ -275,7 +275,7 @@ export default function LandingPage() {
               },
               {
                 title: "100% Satisfaction Guarantee",
-                desc: "Not happy with the results? We&apos;ll re-clean at no extra cost. Your satisfaction is our only measure of success.",
+                desc: "Not happy with the results? We'll re-clean at no extra cost. Your satisfaction is our only measure of success.",
               },
             ].map((item) => (
               <div key={item.title} className="bg-slate-800 rounded-2xl p-5 flex gap-4">
