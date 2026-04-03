@@ -15,10 +15,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Cleanwarks Bangalore",
   description: "Book professional sofa and upholstery cleaning in Bangalore",
-  icons: {
-    icon: "/80x80-no-shade.png",
-    apple: "/80x80-no-shade.png",
-  },
 };
 
 export default function RootLayout({
