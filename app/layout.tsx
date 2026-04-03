@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cleanwarks Bangalore",
+  title: "Clean Warks Bangalore",
   description: "Book professional sofa and upholstery cleaning in Bangalore",
 };
 
