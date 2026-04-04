@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { calculatePrice } from "@/lib/pricing";
 import { calculateTotalDuration, ALL_SLOTS, formatSlot } from "@/lib/duration";
+import { notifyZoho } from "@/lib/notifyZoho";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
@@ -228,6 +229,26 @@ export default function BookingForm({ showHeader = true }: { showHeader?: boolea
       });
       const data = await res.json();
       if (!res.ok) { setError(data.error ?? "Something went wrong. Please try again."); setLoading(false); return; }
+      // Fire Zoho webhook — awaited but wrapped in try/catch inside notifyZoho, so it never blocks
+      await notifyZoho("booking_confirmed", {
+        customer_name: form.name,
+        customer_phone: form.phone,
+        services: {
+          sofa_seats: form.sofaSeats || 0,
+          recliners: form.recliners || 0,
+          dining_chairs: form.diningChairs || 0,
+          carpet_sqft: form.carpetSqft || 0,
+          car_type: form.carType || "",
+        },
+        preferred_date: form.date,
+        preferred_time: form.time,
+        upi_transaction_id: form.upiTransactionId || "",
+        special_instructions: form.notes || "",
+        total_estimate: price,
+        advance_paid: 250,
+        booking_id: data.booking.bookingId,
+        payment_status: data.booking.paymentStatus,
+      });
       setSubmitted({ bookingId: data.booking.bookingId, paymentStatus: data.booking.paymentStatus, price: data.booking.price });
       setForm(initialForm);
     } catch {

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BookingForm from "@/app/components/BookingForm";
+import { notifyZoho } from "@/lib/notifyZoho";
 
 // ─── FAQ Accordion ────────────────────────────────────────────────────────────
 
@@ -31,7 +32,21 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 export default function LandingPage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const openBooking = () => setDrawerOpen(true);
+
+  // Fire-and-forget: never await these, never let them block the UI
+  const openBooking = (location = "unknown") => {
+    notifyZoho("form_opened", { button_location: location });
+    setDrawerOpen(true);
+  };
+
+  // Page visit — fires once on load
+  useEffect(() => {
+    notifyZoho("page_visit", {
+      referrer: document.referrer || "direct",
+      device: /Mobi|Android/i.test(navigator.userAgent) ? "mobile" : "desktop",
+      screen_width: window.innerWidth,
+    });
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -44,7 +59,7 @@ export default function LandingPage() {
           </div>
           <a href="tel:+917034455665" className="nav-phone">📞 70344 55665</a>
           <button
-            onClick={openBooking}
+            onClick={() => openBooking("nav")}
             className="border-2 border-orange-500 text-orange-500 bg-transparent px-5 py-2 rounded-full text-sm font-bold hover:bg-orange-500 hover:text-white active:scale-95 transition-all"
           >
             Book Now
@@ -90,7 +105,7 @@ export default function LandingPage() {
 
           {/* Primary CTA — opens booking popup */}
           <button
-            onClick={openBooking}
+            onClick={() => openBooking("hero_primary")}
             className="bg-orange-500 text-white px-8 py-4 rounded-2xl text-lg font-black hover:bg-orange-600 active:scale-95 transition-all shadow-2xl shadow-orange-500/30 w-full sm:w-auto"
           >
             Book Your Slot Now →
@@ -232,7 +247,7 @@ export default function LandingPage() {
           </div>
           <div className="text-center mt-12">
             <button
-              onClick={openBooking}
+              onClick={() => openBooking("how_it_works")}
               className="bg-orange-500 text-white px-8 py-4 rounded-2xl text-base font-bold hover:bg-orange-600 active:scale-95 transition-all shadow-lg"
             >
               Book Now — Pick Your Slot
@@ -383,7 +398,7 @@ export default function LandingPage() {
               ₹1,200 + ₹400 = <strong>₹1,600 total</strong>
             </p>
             <button
-              onClick={openBooking}
+              onClick={() => openBooking("combo_deal")}
               className="text-white font-bold text-sm"
               style={{
                 background: "#f97316",
@@ -399,7 +414,7 @@ export default function LandingPage() {
 
           <div className="text-center mt-8">
             <button
-              onClick={openBooking}
+              onClick={() => openBooking("pricing")}
               className="bg-orange-500 text-white px-8 py-4 rounded-2xl text-base font-bold hover:bg-orange-600 active:scale-95 transition-all shadow-lg"
             >
               Book Now — Get Your Instant Estimate
@@ -604,7 +619,7 @@ export default function LandingPage() {
             Slots are limited. Verified team. Professional results. At your doorstep.
           </p>
           <button
-            onClick={openBooking}
+            onClick={() => openBooking("final_cta")}
             className="bg-orange-500 text-white px-8 py-4 rounded-2xl text-lg font-black hover:bg-orange-600 active:scale-95 transition-all shadow-xl w-full sm:w-auto"
           >
             Book Now — Starts ₹500/seat
@@ -703,7 +718,7 @@ export default function LandingPage() {
       {/* ── Sticky Mobile Bottom Bar ────────────────────────────────────────── */}
       <div className="mobile-cta-bar">
         <a href="tel:+917034455665" className="mobile-btn-call">📞 Call Us</a>
-        <button className="mobile-btn-book" onClick={openBooking}>
+        <button className="mobile-btn-book" onClick={() => openBooking("mobile_sticky_bar")}>
           Book Now — ₹500/seat
         </button>
       </div>
