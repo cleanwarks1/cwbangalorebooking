@@ -253,8 +253,8 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
               {
-                title: "Machine Hot-Water Extraction",
-                desc: "Professional-grade machines — not spray bottles and brushes. We extract dirt, bacteria, and allergens from deep within the fabric.",
+                title: "Professional Machine Extraction",
+                desc: "Our industrial-grade extraction machines penetrate deep into sofa fibres — drawing out embedded dust mites, bacteria, allergens, and grime that regular vacuuming and surface wiping simply cannot reach.",
               },
               {
                 title: "Trained & Verified Team",
