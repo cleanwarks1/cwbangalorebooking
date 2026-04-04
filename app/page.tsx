@@ -174,40 +174,58 @@ export default function LandingPage() {
 
       {/* ── Problem Section ────────────────────────────────────────────────── */}
       <section className="px-4 py-16 bg-white">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2
-            className="text-3xl sm:text-4xl font-black text-slate-900 mb-4 leading-tight"
-            style={{ letterSpacing: "-0.02em" }}
-          >
-            Is Your Sofa <span style={{ color: "#4B8EC8" }}>Actually</span> Clean?
-          </h2>
-          <p className="text-slate-500 text-lg mb-10 max-w-xl mx-auto">
-            The average sofa hosts millions of dust mites, bacteria, and allergens — invisible to the eye, but harmful to your family every single day.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {[
-              {
-                emoji: "🦠",
-                title: "Dust Mites & Bacteria",
-                desc: "Up to 1 million dust mites live in the average sofa. They trigger allergies, skin rashes, and respiratory issues — especially in children.",
-              },
-              {
-                emoji: "🐾",
-                title: "Pet Hair & Dander",
-                desc: "Pet allergens embed deep in sofa fibres. Surface cleaning barely scratches the surface — professional extraction is the only real fix.",
-              },
-              {
-                emoji: "☕",
-                title: "Stains & Bad Odours",
-                desc: "Food spills, sweat, and moisture create stubborn stains and lingering smells that won't go away no matter how much you spray.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="bg-white rounded-2xl p-6 text-left shadow-sm border border-gray-100">
-                <div className="text-3xl mb-3">{item.emoji}</div>
-                <h3 className="font-bold text-slate-900 mb-2 text-base">{item.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <h2
+              className="text-3xl sm:text-4xl font-black text-slate-900 mb-4 leading-tight"
+              style={{ letterSpacing: "-0.02em" }}
+            >
+              Is Your Sofa <span style={{ color: "#4B8EC8" }}>Actually</span> Clean?
+            </h2>
+            <p className="text-slate-500 text-lg max-w-xl mx-auto">
+              The average sofa hosts millions of dust mites, bacteria, and allergens — invisible to the eye, but harmful to your family every single day.
+            </p>
+          </div>
+          <div className="flex flex-col lg:flex-row gap-8 items-start">
+            {/* Left column — cards */}
+            <div className="flex-1 grid grid-cols-1 gap-5">
+              {[
+                {
+                  emoji: "🦠",
+                  title: "Dust Mites & Bacteria",
+                  desc: "Up to 1 million dust mites live in the average sofa. They trigger allergies, skin rashes, and respiratory issues — especially in children.",
+                },
+                {
+                  emoji: "🐾",
+                  title: "Pet Hair & Dander",
+                  desc: "Pet allergens embed deep in sofa fibres. Surface cleaning barely scratches the surface — professional extraction is the only real fix.",
+                },
+                {
+                  emoji: "☕",
+                  title: "Stains & Bad Odours",
+                  desc: "Food spills, sweat, and moisture create stubborn stains and lingering smells that won't go away no matter how much you spray.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="bg-white rounded-2xl p-6 text-left shadow-sm border border-gray-100">
+                  <div className="text-3xl mb-3">{item.emoji}</div>
+                  <h3 className="font-bold text-slate-900 mb-2 text-base">{item.title}</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+            {/* Right column — portrait image */}
+            <div className="w-full lg:w-72 xl:w-80 flex-shrink-0">
+              <div
+                className="relative w-full rounded-2xl overflow-hidden shadow-md max-h-96 lg:max-h-none"
+                style={{ aspectRatio: "9/16" }}
+              >
+                <img
+                  src="/IMG_0915 copy.jpg"
+                  alt="Professional sofa cleaning service in Bangalore"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
