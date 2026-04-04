@@ -531,19 +531,18 @@ export default function LandingPage() {
       <section className="about-strip">
         <div className="about-strip-inner">
           <div className="about-text">
-            <h3>A Bangalore Business You Can Trust</h3>
+            <h3>A Cleaning Business You Can Trust</h3>
             <p>
-              Clean Warks has been serving Bangalore homes since 2019.
-              We are a locally-owned cleaning company — not a franchise or aggregator.
-              Every team member is personally interviewed, background-verified, and trained before
-              entering your home. When you book with us, you get the same professional team every time,
-              not a random freelancer.
+              Clean Warks has been serving customers since [YEAR].
+              Every team member is personally interviewed, background-verified, and
+              trained before entering your home. When you book with us, you get the
+              same professional team every time — consistent, reliable, and accountable.
             </p>
           </div>
           <div className="about-stats-mini">
             <div className="stat-mini">
               <strong>7+</strong>
-              <span>Years Serving<br />Bangalore</span>
+              <span>Years in<br />Service</span>
             </div>
             <div className="stat-mini">
               <strong>500+</strong>
@@ -621,7 +620,7 @@ export default function LandingPage() {
           {/* Column 1: Brand */}
           <div className="footer-col">
             <img src="/Clean-Warks-Logo-no-back.png" alt="Clean Warks" className="footer-logo" />
-            <p className="footer-tagline">Professional Cleaning Services<br />Bangalore, Karnataka</p>
+            <p className="footer-tagline">Professional Cleaning Services<br />Bengaluru, Karnataka 560103</p>
             <div className="footer-social">
               <a href="https://www.instagram.com/cleanwarks/" target="_blank" rel="noopener" aria-label="Instagram">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -655,8 +654,11 @@ export default function LandingPage() {
                 </a>
               </li>
               <li><a href="mailto:cleanwarks@gmail.com">✉️ cleanwarks@gmail.com</a></li>
-              <li style={{ marginTop: "12px", color: "#94a3b8", fontSize: "13px", lineHeight: 1.6 }}>
-                📍 Serving all areas across Bangalore<br />
+              <li style={{ marginTop: "12px", color: "#94a3b8", fontSize: "13px", lineHeight: 1.8 }}>
+                📍 78/9, Outer Ring Road, Hobli,<br />
+                Bellandur, Varthur,<br />
+                Bengaluru, Karnataka 560103<br />
+                <br />
                 🕐 Mon–Sat, 8 AM – 8 PM
               </li>
             </ul>
