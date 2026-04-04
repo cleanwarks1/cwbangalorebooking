@@ -14,7 +14,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         className="w-full flex items-center justify-between px-5 py-4 text-left bg-white hover:bg-gray-50 transition"
       >
         <span className="font-semibold text-slate-900 text-sm pr-4">{question}</span>
-        <span className={`text-orange-500 text-xs flex-shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
+        <span className={`text-xs flex-shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`} style={{ color: "#4B8EC8" }}>
           ▼
         </span>
       </button>
@@ -39,9 +39,8 @@ export default function LandingPage() {
       {/* ── Sticky Header ──────────────────────────────────────────────────── */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 px-4 py-3">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <img src="/80x80-no-shade.png" alt="Clean Warks" className="w-8 h-8 rounded-lg" />
-            <span className="font-bold text-gray-900 text-base">Clean Warks</span>
+          <div className="flex items-center">
+            <img src="/Clean-Warks-Logo-no-back.png" alt="Clean Warks" style={{ height: "44px", width: "auto" }} />
           </div>
           <button
             onClick={openBooking}
@@ -77,9 +76,9 @@ export default function LandingPage() {
             className="font-black leading-tight mb-4 tracking-tight"
             style={{ fontSize: "clamp(36px, 5.5vw, 60px)" }}
           >
-            Professional Sofa Cleaning
-            <br className="hidden sm:block" />
-            <span className="text-orange-400 italic"> in Bangalore</span>
+            <span style={{ whiteSpace: "nowrap" }}>Professional Sofa Cleaning</span>
+            <br />
+            <span className="text-orange-400 italic">in Bangalore</span>
           </h1>
 
           <p className="text-slate-300 text-lg mb-3 leading-relaxed">
@@ -164,7 +163,7 @@ export default function LandingPage() {
             className="text-3xl sm:text-4xl font-black text-slate-900 mb-4 leading-tight"
             style={{ letterSpacing: "-0.02em" }}
           >
-            Is Your Sofa <span className="text-orange-500">Actually</span> Clean?
+            Is Your Sofa <span style={{ color: "#4B8EC8" }}>Actually</span> Clean?
           </h2>
           <p className="text-slate-500 text-lg mb-10 max-w-xl mx-auto">
             The average sofa hosts millions of dust mites, bacteria, and allergens — invisible to the eye, but harmful to your family every single day.
@@ -218,9 +217,9 @@ export default function LandingPage() {
                   className="w-16 h-16 flex items-center justify-center text-2xl font-black mx-auto mb-4"
                   style={{
                     background: "#1e293b",
-                    border: "2px solid #f97316",
+                    border: "2px solid #4B8EC8",
                     borderRadius: "50%",
-                    color: "#f97316",
+                    color: "#4B8EC8",
                   }}
                 >
                   {s.step}
@@ -327,7 +326,7 @@ export default function LandingPage() {
                 <span
                   className="text-white font-semibold"
                   style={{
-                    background: "#f97316",
+                    background: "#4B8EC8",
                     fontSize: "11px",
                     borderRadius: "100px",
                     padding: "3px 10px",
@@ -377,7 +376,7 @@ export default function LandingPage() {
               padding: "20px",
             }}
           >
-            <p className="text-sm font-semibold text-orange-700 mb-1">🔥 Popular Combo</p>
+            <p className="text-sm font-semibold mb-1" style={{ color: "#4B8EC8" }}>🔥 Popular Combo</p>
             <p className="font-bold text-slate-900 text-base mb-1">3-Seater Sofa + 4 Dining Chairs</p>
             <p className="text-slate-600 text-sm mb-4">
               ₹1,200 + ₹400 = <strong>₹1,600 total</strong>
@@ -483,7 +482,7 @@ export default function LandingPage() {
               href="https://g.page/r/CcleanwarksGoogleReviews"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "#f97316", fontSize: "14px" }}
+              style={{ color: "#4B8EC8", fontSize: "14px" }}
             >
               View all Clean Warks reviews on Google →
             </a>
