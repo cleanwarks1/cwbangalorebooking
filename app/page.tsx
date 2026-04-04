@@ -37,10 +37,10 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white">
 
       {/* ── Sticky Header ──────────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 px-4 py-3">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 px-4 py-1.5">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex items-center">
-            <img src="/Clean-Warks-Logo-no-back.png" alt="Clean Warks" style={{ height: "44px", width: "auto" }} />
+            <img src="/Clean-Warks-Logo-no-back.png" alt="Clean Warks" style={{ height: "56px", width: "auto" }} />
           </div>
           <a href="tel:+917034455665" className="nav-phone">📞 70344 55665</a>
           <button
@@ -533,7 +533,7 @@ export default function LandingPage() {
           <div className="about-text">
             <h3>A Cleaning Business You Can Trust</h3>
             <p>
-              Clean Warks has been serving customers since [YEAR].
+              Clean Warks has been serving customers since 2019.
               Every team member is personally interviewed, background-verified, and
               trained before entering your home. When you book with us, you get the
               same professional team every time — consistent, reliable, and accountable.
