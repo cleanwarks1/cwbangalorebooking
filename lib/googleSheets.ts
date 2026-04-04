@@ -3,10 +3,17 @@ import { google } from "googleapis";
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
 function getAuth() {
+  const rawKey = process.env.GOOGLE_PRIVATE_KEY ?? "";
+
+  // Normalize: handles both literal \n (from .env.local) and actual newlines (from Vercel)
+  const privateKey = rawKey
+    .replace(/\\n/g, "\n")  // convert escape sequences to real newlines
+    .replace(/\r/g, "");    // strip carriage returns
+
   return new google.auth.GoogleAuth({
     credentials: {
       client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+      private_key: privateKey,
     },
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
