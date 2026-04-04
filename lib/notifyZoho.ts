@@ -8,7 +8,7 @@ export async function notifyZoho(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         event,
-        timestamp: new Date().toISOString(),
+        timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
         source: "cleanwarks-landing",
         ...data,
       }),
