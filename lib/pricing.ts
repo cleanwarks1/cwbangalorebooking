@@ -21,8 +21,8 @@ export function calculatePrice(data: any) {
   if (data.mattresses) {
     data.mattresses.forEach((m: string) => {
       if (m === "single") total += 600;
-      if (m === "double") total += 900;
-      if (m === "king") total += 1200;
+      if (m === "double") total += 800;
+      if (m === "king") total += 1000;
     });
   }
 

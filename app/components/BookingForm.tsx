@@ -19,6 +19,12 @@ const CAR_PRICES: Record<string, number> = {
 const CAR_LABELS: Record<string, string> = {
   hatchback: "Hatchback", sedan: "Sedan", suv: "SUV", luxury: "Luxury / MUV",
 };
+const MATTRESS_PRICES: Record<string, number> = {
+  single: 600, double: 800, king: 1000,
+};
+const MATTRESS_LABELS: Record<string, string> = {
+  single: "Single", double: "Double", king: "King / Queen",
+};
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -28,6 +34,8 @@ type FormState = {
   sofaSeats: number;
   recliners: number;
   diningChairs: number;
+  mattressType: string;
+  mattressCount: number;
   carpetSqft: number;
   carType: string;
   address: string;
@@ -40,7 +48,8 @@ type FormState = {
 
 const initialForm: FormState = {
   name: "", phone: "", sofaSeats: 0, recliners: 0,
-  diningChairs: 0, carpetSqft: 0, carType: "", address: "",
+  diningChairs: 0, mattressType: "", mattressCount: 0,
+  carpetSqft: 0, carType: "", address: "",
   mapsLink: "", date: "", time: "", upiTransactionId: "", notes: "",
 };
 
@@ -56,6 +65,10 @@ function getPriceLines(form: FormState) {
     lines.push({ label: `Recliners × ${form.recliners}`, amount: form.recliners * 700 });
   if (form.diningChairs > 0)
     lines.push({ label: `Dining Chairs × ${form.diningChairs}`, amount: form.diningChairs * 100 });
+  if (form.mattressType && form.mattressCount > 0) {
+    const amt = MATTRESS_PRICES[form.mattressType] ?? 0;
+    lines.push({ label: `Mattress (${MATTRESS_LABELS[form.mattressType]}) × ${form.mattressCount}`, amount: amt * form.mattressCount });
+  }
   if (form.carpetSqft > 0) {
     let rate = 25;
     if (form.carpetSqft > 50) rate = 20;
@@ -187,7 +200,7 @@ export default function BookingForm({ showHeader = true }: { showHeader?: boolea
   };
 
   const handleCounter = useCallback(
-    (name: "sofaSeats" | "recliners" | "diningChairs" | "carpetSqft", value: number) => {
+    (name: "sofaSeats" | "recliners" | "diningChairs" | "mattressCount" | "carpetSqft", value: number) => {
       setForm((prev) => ({
         ...prev, [name]: Math.max(0, value),
         ...(name === "sofaSeats" ? { time: "" } : {}),
@@ -225,7 +238,14 @@ export default function BookingForm({ showHeader = true }: { showHeader?: boolea
       const res = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, serviceType: "Sofa Cleaning", mattresses: [], price }),
+        body: JSON.stringify({
+          ...form,
+          serviceType: "Sofa Cleaning",
+          mattresses: form.mattressType && form.mattressCount > 0
+            ? Array(form.mattressCount).fill(form.mattressType)
+            : [],
+          price,
+        }),
       });
       const data = await res.json();
       if (!res.ok) { setError(data.error ?? "Something went wrong. Please try again."); setLoading(false); return; }
@@ -327,6 +347,21 @@ export default function BookingForm({ showHeader = true }: { showHeader?: boolea
         <CounterRow label="Sofa Seats" subLabel="3-seater sofa = 3 seats" value={form.sofaSeats} onChange={(v) => handleCounter("sofaSeats", v)} />
         <CounterRow label="Recliners" subLabel="₹700 per recliner" value={form.recliners} onChange={(v) => handleCounter("recliners", v)} />
         <CounterRow label="Dining Chairs" subLabel="₹100 per chair" value={form.diningChairs} onChange={(v) => handleCounter("diningChairs", v)} />
+        <div className="h-px bg-gray-100" />
+        <div>
+          <p className="text-sm font-medium text-gray-800 mb-1.5">Mattress Cleaning</p>
+          <select name="mattressType" value={form.mattressType} onChange={handleChange} className={inputCls}>
+            <option value="">No Mattress</option>
+            <option value="single">Single — ₹600</option>
+            <option value="double">Double — ₹800</option>
+            <option value="king">King / Queen — ₹1,000</option>
+          </select>
+          {form.mattressType && (
+            <div className="mt-2">
+              <CounterRow label="Number of Mattresses" value={form.mattressCount} onChange={(v) => handleCounter("mattressCount", v)} />
+            </div>
+          )}
+        </div>
         <div className="h-px bg-gray-100" />
         <div className="flex items-center justify-between py-0.5">
           <div className="flex-1 min-w-0 pr-4">

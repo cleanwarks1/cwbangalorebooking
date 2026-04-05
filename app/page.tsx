@@ -376,6 +376,7 @@ export default function LandingPage() {
             {[
               { service: "Recliner — per unit", price: "₹700", note: "" },
               { service: "Dining Chair — per chair", price: "₹100", note: "" },
+              { service: "Mattress Cleaning", price: "₹600", note: "Single ₹600 · Double ₹800 · King/Queen ₹1,000" },
               { service: "Carpet Cleaning", price: "₹25/sqft", note: "Lower rates for larger areas" },
               { service: "Car Seats — Hatchback", price: "₹1,500", note: "" },
               { service: "Car Seats — Sedan", price: "₹1,800", note: "" },

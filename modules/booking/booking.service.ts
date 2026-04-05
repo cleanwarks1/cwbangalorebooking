@@ -11,6 +11,7 @@ function buildServicesSummary(data: any): string {
   if (data.sofaSeats > 0)    parts.push(`Sofa: ${data.sofaSeats} seat${data.sofaSeats > 1 ? "s" : ""}`);
   if (data.recliners > 0)    parts.push(`Recliners: ${data.recliners}`);
   if (data.diningChairs > 0) parts.push(`Dining Chairs: ${data.diningChairs}`);
+  if (data.mattresses?.length > 0) parts.push(`Mattress: ${data.mattresses.join(", ")}`);
   if (data.carpetSqft > 0)   parts.push(`Carpet: ${data.carpetSqft} sqft`);
   if (data.carType)          parts.push(`Car: ${data.carType}`);
   return parts.join(", ") || "—";
