@@ -21,6 +21,7 @@ type ServiceData = {
   sofaSeats?: number;
   recliners?: number;
   diningChairs?: number;
+  mattressCount?: number;
   carpetSqft?: number;
   carType?: string;
 };
@@ -38,8 +39,9 @@ export function calculateTotalDuration(data: ServiceData): number {
   const seats = data.sofaSeats ?? 0;
   if (seats > 0) total += calculateDuration(seats);
 
-  if (data.recliners)    total += data.recliners * 0.75;
-  if (data.diningChairs) total += data.diningChairs * 0.25;
+  if (data.recliners)     total += data.recliners * 0.75;
+  if (data.diningChairs)  total += data.diningChairs * 0.25;
+  if (data.mattressCount) total += data.mattressCount * 1;
 
   const sqft = data.carpetSqft ?? 0;
   if (sqft > 0) {

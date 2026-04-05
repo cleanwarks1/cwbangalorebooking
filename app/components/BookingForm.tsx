@@ -142,12 +142,18 @@ export default function BookingForm({ showHeader = true }: { showHeader?: boolea
     bookingId: string; paymentStatus: string; price: number;
   } | null>(null);
 
-  const price = calculatePrice({ ...form, serviceType: "Sofa Cleaning", mattresses: [] });
+  const mattressesArray = form.mattressType && form.mattressCount > 0
+    ? Array(form.mattressCount).fill(form.mattressType)
+    : [];
+  const price = calculatePrice({ ...form, serviceType: "Sofa Cleaning", mattresses: mattressesArray });
   const balance = Math.max(0, price - ADVANCE);
   const priceLines = getPriceLines(form);
+  const rawTotal = priceLines.reduce((sum, l) => sum + l.amount, 0);
+  const minimumApplies = priceLines.length > 0 && rawTotal < 2000;
   const duration = calculateTotalDuration({
     sofaSeats: form.sofaSeats, recliners: form.recliners,
-    diningChairs: form.diningChairs, carpetSqft: form.carpetSqft, carType: form.carType,
+    diningChairs: form.diningChairs, mattressCount: form.mattressCount,
+    carpetSqft: form.carpetSqft, carType: form.carType,
   });
   const minDate = today && today > BOOKING_OPENS ? today : BOOKING_OPENS;
 
@@ -466,6 +472,11 @@ export default function BookingForm({ showHeader = true }: { showHeader?: boolea
             <div className="flex justify-between text-sm text-gray-500">
               <span>Balance on service day</span><span>₹{balance.toLocaleString("en-IN")}</span>
             </div>
+            {minimumApplies && (
+              <div className="bg-slate-50 border border-slate-100 rounded-xl px-3 py-2 text-xs text-slate-500 leading-relaxed">
+                ℹ️ A minimum visit charge of <strong className="text-slate-700">₹2,000</strong> applies. Your total has been adjusted.
+              </div>
+            )}
           </div>
         )}
       </Card>
