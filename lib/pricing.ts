@@ -10,12 +10,12 @@ export function calculatePrice(data: any) {
       4: 1600,
       5: 2000,
     };
-
     total += sofaPrices[data.sofaSeats] || (data.sofaSeats * 400);
-
-    if (data.recliners) total += data.recliners * 700;
-    if (data.diningChairs) total += data.diningChairs * 100;
   }
+
+  // Recliners and dining chairs (independent of sofa)
+  if (data.recliners) total += data.recliners * 700;
+  if (data.diningChairs) total += data.diningChairs * 100;
 
   // Mattress
   if (data.mattresses) {

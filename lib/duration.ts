@@ -2,16 +2,14 @@
 // Used internally by getBlockedSlots when reading existing bookings from sheet.
 
 export function calculateDuration(sofaSeats: number): number {
-  const base = 3;
-  const extra = Math.max(0, sofaSeats - 5);
-  return base + extra * 0.5;
+  return sofaSeats * 1.5;
 }
 
 // ─── Total Duration (all services) ───────────────────────────────────────────
 // Used in the booking page UI and new-booking slot conflict check.
 //
 // Time estimates per service:
-//   Sofa seats  — 3h base (≤5 seats), +30 min per seat above 5
+//   Sofa seats  — 1.5h per seat
 //   Recliners   — +45 min each
 //   Dining chairs — +15 min each
 //   Carpet      — ≤50 sqft: +30 min | ≤150: +1h | ≤300: +1.5h | >300: +2h
