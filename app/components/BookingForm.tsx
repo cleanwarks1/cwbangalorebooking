@@ -201,6 +201,15 @@ export default function BookingForm({ showHeader = true }: { showHeader?: boolea
   }, [form.date]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    if (e.target.name === "mattressType") {
+      setForm((prev) => ({
+        ...prev,
+        mattressType: e.target.value,
+        mattressCount: e.target.value && prev.mattressCount === 0 ? 1 : prev.mattressCount,
+      }));
+      setError("");
+      return;
+    }
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     setError("");
   };

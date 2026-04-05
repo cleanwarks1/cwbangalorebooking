@@ -2,7 +2,7 @@
 // Used internally by getBlockedSlots when reading existing bookings from sheet.
 
 export function calculateDuration(sofaSeats: number): number {
-  return sofaSeats * 1.5;
+  return 1 + sofaSeats * 0.5;
 }
 
 // ─── Total Duration (all services) ───────────────────────────────────────────
