@@ -52,10 +52,10 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white">
 
       {/* ── Sticky Header ──────────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 px-4 py-1.5">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 px-4 py-0">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex items-center">
-            <img src="/Clean-Warks-Logo-no-back.png" alt="Clean Warks" style={{ height: "56px", width: "auto" }} />
+            <img src="/Clean-Warks-Logo-no-back.png" alt="Clean Warks" style={{ height: "68px", width: "auto" }} />
           </div>
           <a href="tel:+917034455665" className="nav-phone">📞 70344 55665</a>
           <button
